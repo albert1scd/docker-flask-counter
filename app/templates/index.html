@@ -37,44 +37,14 @@
                         <div class="stat-label">last 24 hours</div>
                     </div>
                 </div>
-
-                <div class="stat-card last-visit">
-                    <div class="stat-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3>Last Visit</h3>
-                        <div class="stat-value timestamp" id="lastVisit">{{ last_visit }}</div>
-                        <div class="stat-label">previous visitor</div>
-                    </div>
-                </div>
-
-                <div class="stat-card current-time">
-                    <div class="stat-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3>Current Time</h3>
-                        <div class="stat-value timestamp" id="currentTime">{{ current_time }}</div>
-                        <div class="stat-label">server time</div>
-                    </div>
-                </div>
             </div>
 
-            <div class="controls">
-                <button id="refreshButton" class="refresh-button" onclick="refreshStats()">
-                    <i class="fas fa-sync-alt"></i> Refresh Stats
-                </button>
-                <div class="auto-refresh">
-                    <label class="switch">
-                        <input type="checkbox" id="autoRefreshToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="auto-refresh-label">Auto Refresh</span>
-                </div>
+            <div class="graph-container">
+                <canvas id="visitsChart"></canvas>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

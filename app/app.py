@@ -29,33 +29,21 @@ def home():
     total_visits, today_visits = get_visit_stats()
     current_time = datetime.now(pytz.UTC).strftime('%Y-%m-%d %H:%M:%S UTC')
     
-    # Get last visit time
-    last_visit = cache.get('last_visit')
-    if last_visit:
-        last_visit = last_visit.decode('utf-8')
-    else:
-        last_visit = 'First visit'
-    
-    # Update last visit time
-    cache.set('last_visit', current_time)
-    
     return render_template('index.html',
                          total_visits=total_visits,
                          today_visits=today_visits,
-                         last_visit=last_visit,
                          current_time=current_time)
 
 @app.route('/api/stats')
 def get_stats():
-    """API endpoint for AJAX updates"""
+    """API endpoint for automatic updates"""
     total_visits, today_visits = get_visit_stats()
     current_time = datetime.now(pytz.UTC).strftime('%Y-%m-%d %H:%M:%S UTC')
     
     return jsonify({
         'total_visits': total_visits,
         'today_visits': today_visits,
-        'current_time': current_time,
-        'last_visit': cache.get('last_visit').decode('utf-8') if cache.get('last_visit') else 'First visit'
+        'current_time': current_time
     })
 
 if __name__ == "__main__":
